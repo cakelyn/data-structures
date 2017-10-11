@@ -1,16 +1,11 @@
 var Queue = function() {
   var someInstance = {};
-
-
-  // Use an object with numeric keys to store values
   var storage = {};
   var start = 0;
   var end = 0;
 
-
-  // Implement the methods below
-
   someInstance.enqueue = function(value) {
+
     if (object.keys(storage).length > 0){
       storage[end + 1] = value;
     } else {
@@ -18,15 +13,21 @@ var Queue = function() {
     }
     end++;
 
-      // increment end of storag and place value there
   };
 
   someInstance.dequeue = function() {
-    // edit start variable
+
+    // delete the last property on storage object
+    // decrement end
+
+    delete storage[end];
+    end--;
   };
 
   someInstance.size = function() {
-    // end - start + 1
+    // console.log? return variable?
+    // size of storage = end - start
+    return end - start;
   };
 
   return someInstance;
@@ -34,3 +35,4 @@ var Queue = function() {
 
 var line =  Queue();
 link.enqueue("milk");
+link.dequeue();
