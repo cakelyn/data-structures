@@ -1,38 +1,34 @@
 var Queue = function() {
   var someInstance = {};
   var storage = {};
-  var start = 0;
-  var end = 0;
+  var head = 0;
+  var tail = 0;
+  var temp;
 
   someInstance.enqueue = function(value) {
 
-    if (Object.keys(storage).length > 0){
-      storage[end + 1] = value;
-    } else {
-      storage[1] = value;
-      start++;
-    }
-    end++;
-
+    storage[tail] = value;
+    tail ++;
   };
 
   someInstance.dequeue = function() {
 
-    // delete the last property on storage object
-    // decrement end
-    // end-- unless end === 0
+    if (Object.keys(storage).length === 0) {
+      return;
+    }
 
-    var temp = storage[start + 1];
-    delete storage[start + 1];
-    end !== 0 ? end-- : end = 0;
-    start ++;
+    temp = storage[head];
+    delete storage[head];
+    head ++;
     return temp;
+
   };
 
   someInstance.size = function() {
-    // size of storage = end - start
-    return end - start;
+
+    return tail - head;
   };
 
   return someInstance;
+
 };
