@@ -22,21 +22,6 @@ var BSTmethods = {};
 // tree in the correct position
 BSTmethods.insert = function (val) {
 
-
-  // inner recursive function (root)
-    // base case
-    // if val is less than current
-      // go to left side, if where we are is undefined
-        // val is inserted there
-      // else set new root
-    // else if val is greater than current
-      // go to right side, if where we are is undefined
-        // val is inserted there
-      // else set new root
-
-    // recursive case
-    // call function on new root value
-
     if(!this.value) {
       this.value = val;
     } else {
@@ -93,14 +78,26 @@ BSTmethods.contains = function (val) {
 
 // depthFirstLog: which accepts a callback and executes
 // it on every value contained in the tree
-BSTmethods.depthFirstLog = function (callback) {
+BSTmethods.depthFirstLog = function (callback, node) {
 
+  var node = node || this;
+  var results = [(callback(node.value))];
+
+  if (node.left !== undefined) {
+    results.concat(this.depthFirstLog(callback, node.left));
+  }
+
+  if (node.right !== undefined) {
+    results.concat(this.depthFirstLog(callback, node.right));
+  }
+
+  return results;
 };
 
-// var myTree = BinarySearchTree(5);
-// myTree.insert(8);
-// console.log()
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * insert: logarithmic
+ * contains: logarithmic
+ * depthFirstLog: linear
  */
