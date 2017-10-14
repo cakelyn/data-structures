@@ -66,23 +66,28 @@ BSTmethods.insert = function (val) {
 BSTmethods.contains = function (val) {
 
   var node = this;
+  var found = false;
 
   var treeTraverse = function (node) {
 
-    if (this.value === val) {
-      return node;
+    if (node.value === val) {
+      found = true;
     } else {
 
-      if (val < this.value) {
-        node = this.left;
-        return treeTraverse(node);
-      } else {
-        node = this.right;
-        return treeTraverse(node);
+      if (val < node.value && node.left !== undefined) {
+        node = node.left;
+        treeTraverse(node);
+      } else if (val > node.value && node.right !== undefined) {
+        node = node.right;
+        treeTraverse(node);
       }
 
     }
+
   };
+
+  treeTraverse(node);
+  return found;
 
 };
 
