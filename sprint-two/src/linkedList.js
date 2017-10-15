@@ -14,6 +14,22 @@ var LinkedList = function() {
     empty ? list.head = list[node] : prevNode.next = list[node];
   };
 
+  list.addAnywhere = function (value, target) {
+    var node = Node(value);
+    var nextTarget;
+
+    list[node] = node;
+
+    for (var key in list) {
+      if (list[key].value === target) {
+        nextTarget = list[key].next;
+        list[key].next = list[node];
+        list[node].next = nextTarget;
+      }
+    }
+
+  };
+
   list.removeHead = function() {
     var prevHead = list.head;
 
@@ -48,6 +64,7 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  * addToTail: constant
+ * addAnywhere: constant
  * removeHead: constant
  * contains: linear
  * Node: constant

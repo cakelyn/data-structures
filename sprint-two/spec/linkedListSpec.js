@@ -51,5 +51,10 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
-  // add more tests here to test the functionality of linkedList
+  it('should add a value to a specified target location in the list', function() {
+    linkedList.addToTail(1);
+    linkedList.addToTail(3);
+    linkedList.addAnywhere(2, 1);
+    expect(linkedList.contains(2)).to.equal(true);
+  });
 });

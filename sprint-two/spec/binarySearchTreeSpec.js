@@ -37,4 +37,18 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  it('should be able to find the smallest value in a tree', function(){
+    var result = binarySearchTree.value;
+    var func = function(val) {
+      if(val < result) {
+        result = val;
+      }
+    };
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.depthFirstLog(func);
+    expect(result).to.equal(2);
+  });
 });

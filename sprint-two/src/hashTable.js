@@ -1,5 +1,3 @@
-
-
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
@@ -22,11 +20,6 @@ HashTable.prototype.insert = function(k, v) {
   bucket = this._storage.get(index);
 
   // iterate over bucket, check if key exists and overwrite, else push tuple[k,v]
-
-  if (bucket[0] === undefined) {
-    bucket.push([k,v]);
-    return;
-  }
 
   for (var i = 0; i < bucket.length + 1; i++) {
     if (bucket[i] === undefined) {
@@ -75,7 +68,6 @@ HashTable.prototype.remove = function(k) {
   }
 
 };
-
 
 
 /*
